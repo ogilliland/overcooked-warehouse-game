@@ -11,7 +11,12 @@ config_version=4
 [application]
 
 config/name="Overcooked x HelloFresh"
+run/main_scene="res://scenes/title_screen.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Network="*res://scripts/network.gd"
 
 [physics]
 
