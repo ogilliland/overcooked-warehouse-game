@@ -1,3 +1,5 @@
+# Mac-specific ignores
+.DS_Store
 
 # Godot-specific ignores
 .import/
