@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/item_container.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/box.gd" type="Script" id=2]
+[ext_resource path="res://scenes/box_model.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SpatialMaterial" id=1]
 resource_local_to_scene = true
@@ -21,4 +22,8 @@ size = Vector3( 0.35, 0.35, 0.35 )
 script = ExtResource( 2 )
 
 [node name="MeshInstance" parent="." index="1"]
+visible = false
 mesh = SubResource( 2 )
+
+[node name="BoxModel" parent="." index="3" instance=ExtResource( 3 )]
+transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0 )

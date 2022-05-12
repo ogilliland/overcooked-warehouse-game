@@ -24,3 +24,4 @@ script = ExtResource( 2 )
 mesh = SubResource( 2 )
 
 [node name="Children" type="Spatial" parent="." index="2"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )

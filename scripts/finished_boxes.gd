@@ -8,12 +8,14 @@ onready var mesh_array = [
 ]
 
 func glow_enable() -> void:
-	for mesh_instance in mesh_array:
-		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.05
+	pass
+#	for mesh_instance in mesh_array:
+#		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.05
 
 func glow_disable() -> void:
-	for mesh_instance in mesh_array:
-		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.0
+	pass
+#	for mesh_instance in mesh_array:
+# 		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.0
 
 func place(player: KinematicBody) -> void:
 	var player_item = player.held_item.get_child(0)

@@ -9,6 +9,13 @@ onready var mesh_array = [
 # TO DO - replace this with the desired item
 export var item_type: PackedScene
 
+func _ready() -> void:
+	for i in range(3):
+		var display = item_type.instance()
+		display.is_held = true
+		add_child(display)
+		display.translation += Vector3(0, 0.5, 0) * i
+
 func glow_enable() -> void:
 	for mesh_instance in mesh_array:
 		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.05

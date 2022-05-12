@@ -9,12 +9,14 @@ onready var mesh_array = [
 onready var held_item: Spatial = $HeldItem
 
 func glow_enable() -> void:
-	for mesh_instance in mesh_array:
-		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.05
+	pass
+#	for mesh_instance in mesh_array:
+#		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.05
 
 func glow_disable() -> void:
-	for mesh_instance in mesh_array:
-		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.0
+	pass
+#	for mesh_instance in mesh_array:
+#		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.0
 
 func pick_up(player_id: String) -> void:
 	if has_item():
