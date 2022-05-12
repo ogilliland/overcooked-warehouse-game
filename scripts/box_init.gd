@@ -1,9 +1,11 @@
 extends Node
 
+onready var UpcomingBoxes = preload("res://scripts/upcoming_boxes_display.gd").new()
+
 var invisible_boxes: Array
 var visible_boxes: Array
 
-const recipes_available = ["red"]
+const recipes_available = ["red", "green", "blue"]
 #const recipes_available = ["red", "green", "blue", "orange"]
 
 
@@ -28,9 +30,11 @@ func check_box_done(box: Node):
 		types.append(item.type)
 
 
-func next_box(done: int):
-	visible_boxes.remove(done)
+func next_box(completedBox):
+	visible_boxes.erase(completedBox)
 	visible_boxes.append(invisible_boxes.pop_front())
+#	TODO: Not currently working because at this point, UpcomingBoxes doesn't know what the BoxesTable is
+#	UpcomingBoxes.populate()
 
 
 func check_box(box: Spatial) -> bool:
@@ -45,5 +49,6 @@ func check_box(box: Spatial) -> bool:
 
 		if remaining.size() == 0:
 			print_debug("Box is valid!")
+			next_box(visible_box)
 			return true
 	return false

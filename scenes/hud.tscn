@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://textures/hourglass_ui.png" type="Texture" id=1]
 [ext_resource path="res://scripts/round_timer.gd" type="Script" id=2]
+[ext_resource path="res://scenes/recipe_definition_display.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/upcoming_boxes_display.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/Xolonium-Regular.ttf"
@@ -92,6 +94,10 @@ tracks/2/keys = {
 [node name="HUD" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -131,5 +137,14 @@ panic_seconds_left = 5
 autoplay = "idle"
 anims/blink = SubResource( 3 )
 anims/idle = SubResource( 4 )
+
+[node name="RecipeDefinitions" parent="." instance=ExtResource( 3 )]
+anchor_bottom = 1.0
+
+[node name="UpcomingBoxes" parent="." instance=ExtResource( 4 )]
+anchor_left = 0.886
+anchor_right = 0.886
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="timeout" from="CenterContainer/Control/RoundTimerLabel/RoundTimer" to="CenterContainer/Control/RoundTimerLabel" method="_on_tick"]

@@ -2,6 +2,7 @@ extends Spatial
 
 onready var area: Area = $InteractArea
 export var type: String
+export var twoD_icon: StreamTexture
 
 var is_held: bool = false
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/item.gd" type="Script" id=1]
 [ext_resource path="res://models/broccoli.glb" type="PackedScene" id=2]
+[ext_resource path="res://textures/broccoli_NW.png" type="Texture" id=3]
 
 [sub_resource type="CylinderShape" id=1]
 radius = 0.25
@@ -23,7 +24,8 @@ height = 0.35
 
 [node name="Broccoli" type="Spatial" groups=["ingredients", "items"]]
 script = ExtResource( 1 )
-type = "TOMATO"
+type = "BROCCOLI"
+twoD_icon = ExtResource( 3 )
 
 [node name="InteractArea" type="Area" parent="."]
 monitoring = false
