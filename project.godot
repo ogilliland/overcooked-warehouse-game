@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Network="*res://scripts/network.gd"
+Recipes="*res://scripts/recipes.gd"
 
 [display]
 

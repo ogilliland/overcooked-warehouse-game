@@ -1,6 +1,7 @@
 extends Spatial
 
 onready var area: Area = $InteractArea
+export var type: String
 
 var is_held: bool = false
 

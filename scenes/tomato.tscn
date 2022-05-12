@@ -23,6 +23,7 @@ height = 0.35
 
 [node name="Tomato" type="Spatial" groups=["ingredients", "items"]]
 script = ExtResource( 1 )
+type = "TOMATO"
 
 [node name="InteractArea" type="Area" parent="."]
 monitoring = false
