@@ -42,6 +42,13 @@ func insert_into(target: Spatial, path: String) -> void:
 		if num_children <= item_container.MAX_ITEMS:
 			rpc("update_parent", target.name+path+"/Children", Vector3(0, 0.5 * num_children, 0), 2, false)
 
+func destroy_and_score() -> void:
+#	rpc("add_score", 10) # TO DO - define scoring rules, should be a separate script
+	rpc("destroy")
+
+sync func destroy() -> void:
+	queue_free()
+
 sync func update_parent(node_path: String, new_position: Vector3, new_collision_layer: int, new_is_held: bool) -> void:
 	get_parent().remove_child(self)
 	var new_parent = Network.game.get_node(node_path)

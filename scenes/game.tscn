@@ -1,6 +1,5 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://scenes/item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/game.gd" type="Script" id=3]
 [ext_resource path="res://scenes/workstation.tscn" type="PackedScene" id=4]
@@ -8,6 +7,7 @@
 [ext_resource path="res://scenes/tomato.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/box.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/kit_bag.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/finished_boxes.tscn" type="PackedScene" id=9]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 10, 10 )
@@ -23,17 +23,6 @@ script = ExtResource( 3 )
 [node name="Floor" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
-
-[node name="Item" parent="." instance=ExtResource( 1 )]
-
-[node name="Item2" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08441, 0, 1.39255 )
-
-[node name="Item3" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15384, 0, 2.07404 )
-
-[node name="Item4" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.30198, 0, -2.55656 )
 
 [node name="Workstation" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0 )
@@ -58,3 +47,6 @@ item_type = ExtResource( 8 )
 [node name="ItemSource3" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5 )
 item_type = ExtResource( 6 )
+
+[node name="FinishedBoxes" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4 )

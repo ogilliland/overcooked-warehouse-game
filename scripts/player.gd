@@ -41,6 +41,8 @@ func _input(event: InputEvent) -> void:
 				if not nearest_object == null:
 					if nearest_object.is_in_group("workstations"):
 						nearest_object.place(self)
+					elif nearest_object.is_in_group("finished_boxes"):
+						nearest_object.place(self)
 					else:
 						held_item.get_child(0).put_down()
 				else:
