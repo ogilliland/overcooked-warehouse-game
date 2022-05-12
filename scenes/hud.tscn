@@ -4,4 +4,4 @@
 
 [node name="HUD" type="CanvasLayer"]
 
-[node name="RoundTimerLabel" parent="." instance=ExtResource( 1 )]
+[node name="Control" parent="." instance=ExtResource( 1 )]
