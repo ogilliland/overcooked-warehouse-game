@@ -47,7 +47,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.3, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 55, 22 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 40, 18 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -89,7 +89,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[node name="Control" type="CenterContainer"]
+[node name="CenterContainer" type="CenterContainer"]
 anchor_right = 1.0
 margin_bottom = 39.0
 
@@ -103,12 +103,16 @@ patch_margin_top = 43
 patch_margin_right = 48
 patch_margin_bottom = 35
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2( 481, 22 )
+[node name="Control" type="Control" parent="."]
+margin_left = 474.0
+margin_top = 24.0
+margin_right = 549.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 75, 30 )
 
-[node name="RoundTimerLabel" type="Label" parent="Node2D"]
-margin_right = 102.0
-margin_bottom = 39.0
+[node name="RoundTimerLabel" type="Label" parent="Control"]
+margin_left = 20.0
+margin_top = 3.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "01:30"
@@ -118,11 +122,11 @@ script = ExtResource( 1 )
 total_round_time = "0:6"
 panic_seconds_left = 5
 
-[node name="RoundTimer" type="Timer" parent="Node2D/RoundTimerLabel"]
+[node name="RoundTimer" type="Timer" parent="Control/RoundTimerLabel"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/RoundTimerLabel"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/RoundTimerLabel"]
 autoplay = "idle"
 anims/blink = SubResource( 3 )
 anims/idle = SubResource( 4 )
 
-[connection signal="timeout" from="Node2D/RoundTimerLabel/RoundTimer" to="Node2D/RoundTimerLabel" method="_on_tick"]
+[connection signal="timeout" from="Control/RoundTimerLabel/RoundTimer" to="Control/RoundTimerLabel" method="_on_tick"]

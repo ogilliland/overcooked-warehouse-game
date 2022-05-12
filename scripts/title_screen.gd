@@ -4,7 +4,7 @@ onready var main_menu = $MainMenu
 onready var server_ip_input = $MainMenu/ServerIP
 onready var device_ip_label = $MainMenu/LocalIP
 onready var game = $ViewportContainer/Viewport/Game
-onready var round_timer = $ViewportContainer/HUD/Control/Node2D/RoundTimerLabel
+onready var round_timer = $ViewportContainer/HUD/CenterContainer/Control/RoundTimerLabel
 
 
 func _ready() -> void:
