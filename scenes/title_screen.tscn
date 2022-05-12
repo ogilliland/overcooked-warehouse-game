@@ -137,6 +137,7 @@ margin_bottom = 699.0
 texture = ExtResource( 6 )
 
 [node name="MenuButtons" type="VBoxContainer" parent="MainMenu"]
+visible = false
 anchor_left = 0.25
 anchor_top = 0.45
 anchor_right = 0.75
@@ -156,22 +157,30 @@ margin_bottom = 116.0
 text = "Exit"
 
 [node name="NewGame" type="VBoxContainer" parent="MainMenu"]
-visible = false
 anchor_left = 0.25
 anchor_top = 0.45
 anchor_right = 0.75
 anchor_bottom = 0.5
 custom_constants/separation = 20
 
+[node name="PlayerName" type="LineEdit" parent="MainMenu/NewGame"]
+margin_right = 512.0
+margin_bottom = 53.0
+custom_fonts/font = ExtResource( 10 )
+align = 1
+placeholder_text = "Enter your name..."
+
 [node name="CreateServer" parent="MainMenu/NewGame" instance=ExtResource( 8 )]
 anchor_right = 0.0
+margin_top = 73.0
 margin_right = 512.0
+margin_bottom = 121.0
 text = "Create Server"
 
 [node name="OrLabel" type="Label" parent="MainMenu/NewGame"]
-margin_top = 68.0
+margin_top = 141.0
 margin_right = 512.0
-margin_bottom = 111.0
+margin_bottom = 184.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 11 )
 text = "- OR -"
@@ -179,18 +188,18 @@ align = 1
 valign = 1
 
 [node name="ServerIP" type="LineEdit" parent="MainMenu/NewGame"]
-margin_top = 131.0
+margin_top = 204.0
 margin_right = 512.0
-margin_bottom = 184.0
+margin_bottom = 257.0
 custom_fonts/font = ExtResource( 10 )
 align = 1
 placeholder_text = "Enter IP Address..."
 
 [node name="JoinServer" parent="MainMenu/NewGame" instance=ExtResource( 8 )]
 anchor_right = 0.0
-margin_top = 204.0
+margin_top = 277.0
 margin_right = 512.0
-margin_bottom = 252.0
+margin_bottom = 325.0
 text = "Join Server"
 
 [connection signal="pressed" from="GameViewport/HUD/TestAddPoints" to="GameViewport/HUD/Scoreboard" method="_on_TestAddPoints_pressed"]

@@ -4,8 +4,10 @@ onready var main_menu = $MainMenu
 # TO DO - update these paths to IP addresses
 onready var server_ip_input = $MainMenu/NewGame/ServerIP
 onready var device_ip_label = $Lobby/LocalIP
+onready var player_name_input = $MainMenu/PlayerName
 onready var game = $GameViewport/Viewport/Game
 onready var lobby = $Lobby
+
 
 func _ready() -> void:
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -17,13 +19,18 @@ func _ready() -> void:
 
 func _player_connected(id: int) -> void:
 	print_debug("Player " + str(id) + " has connected")
+	print("HELLO")
 
 	# Instance other players when a new client joins
 	game.instance_player(id)
+	# Keep a map with the names
+	rpc_id(id, "register_player", Players.myName)
 
 
 func _player_disconnected(id: int) -> void:
 	print_debug("Player " + str(id) + " has disconnected")
+
+	Players.players.erase(id)
 
 	# Delete player when they disconnect
 	if game.has_node(str(id)):
@@ -37,6 +44,7 @@ func _server_connected() -> void:
 
 
 func _on_create_server_pressed() -> void:
+	set_player_name()
 	Network.is_host = true
 	main_menu.hide()
 	lobby.show_lobby()
@@ -44,9 +52,24 @@ func _on_create_server_pressed() -> void:
 
 
 func _on_join_server_pressed() -> void:
+	set_player_name()
 	if server_ip_input.text != "":
 		Network.is_host = false
 		main_menu.hide()
 		lobby.show_lobby()
 		Network.ip_address = server_ip_input.text
 		Network.join_server()
+
+
+remote func register_player(player_name: String):
+	# Get the id of the RPC sender.
+	var id = get_tree().get_rpc_sender_id()
+	# Store the info
+	Players.players[id] = player_name
+
+
+func set_player_name() -> void:
+	var player_name = player_name_input.text
+	if player_name == "":
+		player_name = "Player" + str(randi() % 1000)
+	Players.myName = player_name
