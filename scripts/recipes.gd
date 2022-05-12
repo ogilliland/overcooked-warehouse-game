@@ -1,7 +1,11 @@
 extends Node
 
 onready var ingredients = [
-	preload("res://scenes/tomato.tscn")
+	preload("res://scenes/tomato.tscn"),
+	preload("res://scenes/broccoli.tscn"),
+	preload("res://scenes/carrot.tscn"),
+	preload("res://scenes/steak.tscn"),
+	preload("res://scenes/turkey.tscn")
 ]
 
 var ingredient_scenes: Array
@@ -28,10 +32,28 @@ func _randomize() -> void:
 		"color": Color(255, 0, 0),
 		"ingredients": [
 			ingredient_scenes[0],
-			ingredient_scenes[0],
-			ingredient_scenes[0]
+			ingredient_scenes[1],
+			ingredient_scenes[4]
 		],
 		"type": "red"
+	})
+	recipes.append({
+		"color": Color(0, 255, 0),
+		"ingredients": [
+			ingredient_scenes[1],
+			ingredient_scenes[2],
+			ingredient_scenes[3]
+		],
+		"type": "green"
+	})
+	recipes.append({
+		"color": Color(0, 0, 255),
+		"ingredients": [
+			ingredient_scenes[1],
+			ingredient_scenes[3],
+			ingredient_scenes[4]
+		],
+		"type": "blue"
 	})
 
 func check_recipe(kit_bag: Spatial) -> Dictionary:
