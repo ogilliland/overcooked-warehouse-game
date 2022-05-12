@@ -35,6 +35,13 @@ func place(target: Spatial) -> void:
 	if is_held:
 		rpc("update_parent", target.name+"/HeldItem", Vector3(0, 0, 0), 2, false)
 
+func insert_into(target: Spatial, path: String) -> void:
+	if is_held:
+		var item_container = target.held_item.get_child(0)
+		var num_children = item_container.children_container.get_child_count() + 1
+		if num_children <= item_container.MAX_ITEMS:
+			rpc("update_parent", target.name+path+"/Children", Vector3(0, 0.5 * num_children, 0), 2, false)
+
 sync func update_parent(node_path: String, new_position: Vector3, new_collision_layer: int, new_is_held: bool) -> void:
 	get_parent().remove_child(self)
 	var new_parent = Network.game.get_node(node_path)

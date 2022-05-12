@@ -22,9 +22,14 @@ func pick_up(player_id: String) -> void:
 		item.pick_up(player_id)
 
 func place(player: KinematicBody) -> void:
+	var player_item = player.held_item.get_child(0)
 	if not has_item():
-		var item = player.held_item.get_child(0)
-		item.place(self)
+		player_item.place(self)
+	else:
+		var workstation_item = held_item.get_child(0)
+		if workstation_item.is_in_group("item_containers"):
+			if (player_item.is_in_group("ingredients") and workstation_item.is_in_group("kit_bags")) or (player_item.is_in_group("kit_bags") and workstation_item.is_in_group("boxes")):
+				player_item.insert_into(self, "/HeldItem/"+workstation_item.name)
 
 func has_item() -> bool:
 	return (not held_item.get_child_count() == 0)

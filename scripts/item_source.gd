@@ -7,7 +7,7 @@ onready var mesh_array = [
 ]
 
 # TO DO - replace this with the desired item
-var item_type = preload("res://scenes/item.tscn")
+export var item_type: PackedScene
 
 func glow_enable() -> void:
 	for mesh_instance in mesh_array:
