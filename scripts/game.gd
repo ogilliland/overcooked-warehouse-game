@@ -13,7 +13,7 @@ func instance_player(id: int) -> void:
 	# Randomize player position for testing
 	# TO DO - replace this with actual spawn locations defined in the map
 	player_instance.global_transform.origin = Vector3(
-		rand_range(-10, 10),
+		rand_range(-5, 5),
 		0,
-		rand_range(-10, 10)
+		rand_range(-5, 5)
 	)
