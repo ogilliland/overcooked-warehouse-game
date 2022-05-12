@@ -7,6 +7,9 @@ const FRICTION: float = 8.0
 var velocity: Vector3
 var angle: float
 
+var nearby_objects: Array
+var nearest_object: Spatial
+
 onready var tween = $Tween
 puppet var puppet_translation: Vector3 setget set_puppet_translation
 puppet var puppet_velocity: Vector3
@@ -14,6 +17,7 @@ puppet var puppet_angle: float
 
 func _ready() -> void:
 	velocity = Vector3(0, 0, 0)
+	nearby_objects = []
 
 func set_puppet_translation(new_translation: Vector3) -> void:
 	puppet_translation = new_translation
@@ -71,3 +75,33 @@ func _on_network_tick_rate_timeout():
 		rset_unreliable("puppet_translation", translation)
 		rset_unreliable("puppet_velocity", velocity)
 		rset_unreliable("puppet_angle", angle)
+
+func _on_interaction_area_entered(area: Area) -> void:
+	# Assuming the area is always a direct child of the node we're interested in
+	nearby_objects.append(area.get_parent())
+	update_nearest()
+
+func _on_interaction_area_exited(area: Area) -> void:
+	# Assuming the area is always a direct child of the node we're interested in
+	if area.get_parent().has_method("glow_disable"):
+		area.get_parent().glow_disable()
+	
+	nearby_objects.erase(area.get_parent())
+	if nearby_objects.size() > 0:
+		update_nearest()
+
+func update_nearest() -> void:
+	var min_dist = 9999 # Large default
+	
+	for object in nearby_objects:
+		var dist = (object.global_transform.origin - global_transform.origin).length()
+		if dist < min_dist:
+			nearest_object = object
+			min_dist = dist
+		
+		# Disable glow on all items except nearest
+		if object.has_method("glow_disable"):
+			object.glow_disable()
+	
+	if nearest_object.has_method("glow_enable"):
+		nearest_object.glow_enable()
