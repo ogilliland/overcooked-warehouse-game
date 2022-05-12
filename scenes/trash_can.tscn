@@ -21,7 +21,7 @@ emission_on_uv2 = false
 [sub_resource type="CubeMesh" id=6]
 resource_local_to_scene = true
 material = SubResource( 5 )
-size = Vector3( 0.7, 0.25, 0.7 )
+size = Vector3( 0.79, 0.25, 0.79 )
 
 [node name="TrashCan" type="StaticBody" groups=["trash_cans"]]
 script = ExtResource( 1 )
