@@ -100,7 +100,7 @@ func _physics_process(delta: float) -> void:
 	transform.basis = Basis(c)
 	
 	# Lego-style wobble walking
-	var speed = clamp(velocity.length() / 8.0, 0.0, 1.0)
+	var speed = clamp(velocity.length() + puppet_velocity.length() / 8.0, 0.0, 1.0)
 	var offset = speed * 0.125 * sin(OS.get_ticks_msec()*0.02)
 	model.rotation.z = offset
 	model.rotation.x = speed * -0.125
