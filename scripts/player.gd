@@ -11,6 +11,7 @@ var nearby_objects: Array
 var nearest_object: Spatial
 
 onready var held_item: Spatial = $HeldItem
+onready var model: Spatial = $Worker
 
 onready var tween: Tween = $Tween
 puppet var puppet_translation: Vector3 setget set_puppet_translation
@@ -93,6 +94,12 @@ func _physics_process(delta: float) -> void:
 	# Interpolate using spherical-linear interpolation (SLERP)
 	var c = a.slerp(b, 0.25)
 	transform.basis = Basis(c)
+	
+	# Lego-style wobble walking
+	var speed = clamp(velocity.length() / 8.0, 0.0, 1.0)
+	var offset = speed * 0.125 * sin(OS.get_ticks_msec()*0.02)
+	model.rotation.z = offset
+	model.rotation.x = speed * -0.125
 
 # Tick rate of 0.03 seconds is approx. 30 FPS
 # We don't need to send network updates at the full 60 FPS of _physics_process()
