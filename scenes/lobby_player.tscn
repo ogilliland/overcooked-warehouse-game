@@ -19,6 +19,7 @@ handle_input_locally = false
 render_target_update_mode = 3
 
 [node name="Player" parent="ViewportContainer/Viewport" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0 )
 script = null
 
 [node name="Body" parent="ViewportContainer/Viewport/Player" index="0"]
@@ -31,7 +32,7 @@ layers = 32
 layers = 32
 
 [node name="Camera" type="Camera" parent="ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100.75, 2 )
 cull_mask = 1016800
 projection = 1
 size = 3.0
