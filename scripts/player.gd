@@ -32,9 +32,11 @@ func _input(event: InputEvent) -> void:
 			if held_item.get_child_count() == 0:
 				if not nearest_object == null:
 					if nearest_object.is_in_group("items"):
-						nearest_object.pick_up(self)
+						nearest_object.pick_up(self.name)
 					elif nearest_object.is_in_group("workstations"):
-						nearest_object.pick_up(self)
+						nearest_object.pick_up(self.name)
+					elif nearest_object.is_in_group("item_sources"):
+						nearest_object.pick_up(self.name)
 			else: # Already holding an item
 				if not nearest_object == null:
 					if nearest_object.is_in_group("workstations"):

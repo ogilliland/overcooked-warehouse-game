@@ -1,4 +1,4 @@
-extends Spatial
+extends StaticBody
 
 # TO DO - update this when real meshes are defined
 # Also make sure "local to scene" is enabled on the material for glow to work
@@ -6,7 +6,8 @@ onready var mesh_array = [
 	$MeshInstance
 ]
 
-onready var held_item: Spatial = $HeldItem
+# TO DO - replace this with the desired item
+var item_type = preload("res://scenes/item.tscn")
 
 func glow_enable() -> void:
 	for mesh_instance in mesh_array:
@@ -17,14 +18,9 @@ func glow_disable() -> void:
 		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.0
 
 func pick_up(player_id: String) -> void:
-	if has_item():
-		var item = held_item.get_child(0)
-		item.pick_up(player_id)
+	rpc("spawn_item", player_id)
 
-func place(player: KinematicBody) -> void:
-	if not has_item():
-		var item = player.held_item.get_child(0)
-		item.place(self)
-
-func has_item() -> bool:
-	return (not held_item.get_child_count() == 0)
+sync func spawn_item(player_id: String) -> void:
+	var item_instance = item_type.instance()
+	Network.game.add_child(item_instance)
+	item_instance.pick_up(player_id)

@@ -2,7 +2,7 @@ extends Spatial
 
 onready var area: Area = $InteractArea
 
-var is_held: bool
+var is_held: bool = false
 
 # TO DO - update this when real meshes are defined
 # Also make sure "local to scene" is enabled on the material for glow to work
@@ -21,9 +21,9 @@ func glow_disable() -> void:
 	for mesh_instance in mesh_array:
 		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.0
 
-func pick_up(player: KinematicBody) -> void:
+func pick_up(player_id: String) -> void:
 	if not is_held:
-		rpc("update_parent", player.name+"/HeldItem", Vector3(0, 0, 0), 2, true)
+		rpc("update_parent", player_id+"/HeldItem", Vector3(0, 0, 0), 2, true)
 
 func put_down() -> void:
 	if is_held:
