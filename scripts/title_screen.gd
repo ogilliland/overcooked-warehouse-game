@@ -3,7 +3,7 @@ extends Control
 onready var main_menu = $MainMenu
 onready var server_ip_input = $MainMenu/ServerIP
 onready var device_ip_label = $MainMenu/LocalIP
-onready var game = $ViewportContainer/Viewport/Game
+onready var game = $GameViewport/Viewport/Game
 onready var lobby = $Lobby
 
 func _ready() -> void:

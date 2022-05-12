@@ -1,7 +1,135 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scenes/round_timer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://textures/hourglass_ui.png" type="Texture" id=1]
+[ext_resource path="res://scripts/round_timer.gd" type="Script" id=2]
 
-[node name="HUD" type="CanvasLayer"]
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://fonts/Xolonium-Regular.ttf"
 
-[node name="CenterContainer" parent="." instance=ExtResource( 1 )]
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = SubResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "blink 2"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_pivot_offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 40, 18 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_pivot_offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+
+[node name="Background" type="NinePatchRect" parent="CenterContainer"]
+margin_left = 428.0
+margin_right = 596.0
+margin_bottom = 78.0
+texture = ExtResource( 1 )
+patch_margin_left = 120
+patch_margin_top = 43
+patch_margin_right = 48
+patch_margin_bottom = 35
+
+[node name="Control" type="Control" parent="CenterContainer"]
+margin_left = 474.0
+margin_top = 24.0
+margin_right = 549.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 75, 30 )
+
+[node name="RoundTimerLabel" type="Label" parent="CenterContainer/Control"]
+margin_left = 20.0
+margin_top = 3.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "01:30"
+align = 1
+valign = 1
+script = ExtResource( 2 )
+total_round_time = "1:30"
+panic_seconds_left = 5
+
+[node name="RoundTimer" type="Timer" parent="CenterContainer/Control/RoundTimerLabel"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer/Control/RoundTimerLabel"]
+autoplay = "idle"
+anims/blink = SubResource( 3 )
+anims/idle = SubResource( 4 )
+
+[connection signal="timeout" from="CenterContainer/Control/RoundTimerLabel/RoundTimer" to="CenterContainer/Control/RoundTimerLabel" method="_on_tick"]

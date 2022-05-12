@@ -12,4 +12,5 @@ func show_lobby() -> void:
 
 func _on_start_game_pressed():
 	visible = false
+	get_node("../GameViewport").visible = true
 	Network.game.start()
