@@ -45,7 +45,8 @@ func insert_into(target: Spatial, path: String) -> void:
 			rpc("update_parent", target.name+path+"/Children", Vector3(0, 0.5, 0) + offset, 2, false)
 
 func destroy_and_score() -> void:
-#	rpc("add_score", 10) # TO DO - define scoring rules, should be a separate script
+	if BoxInit.check_box(self):
+		Scoreboard.add_score(self)
 	rpc("_destroy")
 
 func destroy() -> void:
