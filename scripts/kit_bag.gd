@@ -6,5 +6,6 @@ var full: bool = false
 func _physics_process(delta: float) -> void:
 	if not full:
 		if get_contents().size() == 3:
-			print(Recipes.check_recipe(self))
+			var built_recipe = Recipes.check_recipe(self)
+			type = built_recipe.type
 			full = true

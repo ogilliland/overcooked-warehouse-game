@@ -11,6 +11,14 @@ var recipes: Array = []
 func _ready() -> void:
 	_randomize()
 
+# [ 2, 1, 2, 0, 0, 1, 2, 1]
+
+# on box complete, pop from visible, push from invisible to visible
+
+# [0, 2, 1]
+
+# queue of 100 boxes, you peek the first 3
+
 # TO DO - randomize recipes from server at start of game?
 func _randomize() -> void:
 	for packed_scene in ingredients:
@@ -22,7 +30,8 @@ func _randomize() -> void:
 			ingredient_scenes[0],
 			ingredient_scenes[0],
 			ingredient_scenes[0]
-		]
+		],
+		"type": "red"
 	})
 
 func check_recipe(kit_bag: Spatial) -> Dictionary:

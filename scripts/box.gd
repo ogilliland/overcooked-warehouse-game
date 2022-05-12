@@ -1,5 +1,8 @@
 extends "res://scripts/item_container.gd"
 
+var full: bool = false
+
+
 func find_offset(num_children: int) -> Vector3:
 	var offset = Vector3(0, 0.5, 0)
 	match num_children:
