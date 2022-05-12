@@ -25,11 +25,15 @@ func pick_up(player: KinematicBody) -> void:
 	if not is_held:
 		rpc("update_parent", player.name+"/HeldItem", Vector3(0, 0, 0), 2, true)
 
-func put_down(target: Spatial = null) -> void:
+func put_down() -> void:
 	if is_held:
 		var new_position = global_transform.origin
 		new_position.y = 0
 		rpc("update_parent", ".", new_position, 1, false)
+
+func place(target: Spatial) -> void:
+	if is_held:
+		rpc("update_parent", target.name+"/HeldItem", Vector3(0, 0, 0), 2, false)
 
 sync func update_parent(node_path: String, new_position: Vector3, new_collision_layer: int, new_is_held: bool) -> void:
 	get_parent().remove_child(self)

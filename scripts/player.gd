@@ -36,7 +36,13 @@ func _input(event: InputEvent) -> void:
 					elif nearest_object.is_in_group("workstations"):
 						nearest_object.pick_up(self)
 			else: # Already holding an item
-				held_item.get_child(0).put_down()
+				if not nearest_object == null:
+					if nearest_object.is_in_group("workstations"):
+						nearest_object.place(self)
+					else:
+						held_item.get_child(0).put_down()
+				else:
+					held_item.get_child(0).put_down()
 
 func _physics_process(delta: float) -> void:
 	var target_angle = 0 # Will be used later to rotate player

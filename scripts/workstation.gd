@@ -17,15 +17,14 @@ func glow_disable() -> void:
 		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.0
 
 func pick_up(player: KinematicBody) -> void:
-	print(has_item())
-	print("PICK UP!")
 	if has_item():
 		var item = held_item.get_child(0)
 		item.pick_up(player)
 
-func put_down(player: KinematicBody) -> void:
+func place(player: KinematicBody) -> void:
 	if not has_item():
-		pass
+		var item = player.held_item.get_child(0)
+		item.place(self)
 
 func has_item() -> bool:
 	return (not held_item.get_child_count() == 0)
