@@ -97,21 +97,23 @@ func _on_network_tick_rate_timeout():
 		rset_unreliable("puppet_angle", angle)
 
 func _on_interaction_area_entered(area: Area) -> void:
-	# Assuming the area is always a direct child of the node we're interested in
-	nearby_objects.append(area.get_parent())
-	update_nearest()
+	if is_network_master():
+		# Assuming the area is always a direct child of the node we're interested in
+		nearby_objects.append(area.get_parent())
+		update_nearest()
 
 func _on_interaction_area_exited(area: Area) -> void:
-	# Assuming the area is always a direct child of the node we're interested in
-	if area.get_parent().has_method("glow_disable"):
-		area.get_parent().glow_disable()
-	
-	if nearest_object == area.get_parent():
-		nearest_object = null
-	
-	nearby_objects.erase(area.get_parent())
-	if nearby_objects.size() > 0:
-		update_nearest()
+	if is_network_master():
+		# Assuming the area is always a direct child of the node we're interested in
+		if area.get_parent().has_method("glow_disable"):
+			area.get_parent().glow_disable()
+		
+		if nearest_object == area.get_parent():
+			nearest_object = null
+		
+		nearby_objects.erase(area.get_parent())
+		if nearby_objects.size() > 0:
+			update_nearest()
 
 func update_nearest() -> void:
 	var min_dist = 9999 # Large default
