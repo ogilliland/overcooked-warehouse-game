@@ -2,10 +2,10 @@ extends Control
 
 onready var start_button: Control = $StartGame
 
-onready var player1 = $HBoxContainer/LobbyPlayer1/PlayerName
-onready var player2 = $HBoxContainer/LobbyPlayer2/PlayerName
-onready var player3 = $HBoxContainer/LobbyPlayer3/PlayerName
-onready var player4 = $HBoxContainer/LobbyPlayer4/PlayerName
+onready var player1 = $HBoxContainer/LobbyPlayer1
+onready var player2 = $HBoxContainer/LobbyPlayer2
+onready var player3 = $HBoxContainer/LobbyPlayer3
+onready var player4 = $HBoxContainer/LobbyPlayer4
 onready var players = [player1, player2, player3, player4]
 
 
@@ -23,10 +23,12 @@ func render_players():
 	var i = 0
 	for key in Players.players:
 #		print("Player " + str(key))
-		players[i].text = Players.players[key]
+		players[i].get_node("PlayerName").text = Players.players[key]
 		i += 1
 	print_debug("New player joined")
-	print_debug(Players.players)
+	for j in range(4):
+		players[j].refresh()
+#	print_debug(Players.players)
 
 
 func show_lobby() -> void:

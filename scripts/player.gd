@@ -55,6 +55,8 @@ func _physics_process(delta: float) -> void:
 	var target_angle = 0 # Will be used later to rotate player
 	
 	if is_network_master():
+		$ActiveIndicator.visible = true
+		
 		var direction := Vector3(
 			Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 			0,
@@ -73,6 +75,8 @@ func _physics_process(delta: float) -> void:
 		target_angle = angle
 		
 	else:
+		$ActiveIndicator.visible = false
+		
 		# Lag compensation - predict player movement based on last velocity
 		if not tween.is_active():
 			move_and_slide(puppet_velocity, Vector3.UP) # Deliberately not setting puppet_velocity to return value here

@@ -88,5 +88,7 @@ remote func register_player(player_name: String):
 func set_player_name() -> void:
 	var player_name = player_name_input.text
 	if player_name == "":
-		player_name = "Player" + str(randi() % 1000)
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
+		player_name = "Player" + str(rng.randi() % 1000)
 	Players.myName = player_name

@@ -57,7 +57,7 @@ script = ExtResource( 5 )
 [node name="Background" type="ColorRect" parent="Lobby"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.301961, 0.301961, 0.301961, 1 )
 
 [node name="LocalIP" type="Label" parent="Lobby"]
 anchor_top = 0.1
@@ -80,36 +80,12 @@ anchor_bottom = 0.0
 margin_right = 201.0
 margin_bottom = 360.0
 
-[node name="PlayerName" type="Label" parent="Lobby/HBoxContainer/LobbyPlayer1"]
-anchor_left = 0.5
-anchor_top = 0.794
-anchor_right = 0.5
-anchor_bottom = 0.794
-margin_left = -45.5
-margin_top = -6.84
-margin_right = 46.5
-margin_bottom = 7.16
-text = "p1"
-align = 1
-
 [node name="LobbyPlayer2" parent="Lobby/HBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 205.0
 margin_right = 407.0
 margin_bottom = 360.0
-
-[node name="PlayerName" type="Label" parent="Lobby/HBoxContainer/LobbyPlayer2"]
-anchor_left = 0.498
-anchor_top = 0.794
-anchor_right = 0.498
-anchor_bottom = 0.794
-margin_left = -45.996
-margin_top = -6.84
-margin_right = 46.004
-margin_bottom = 7.16
-text = "p2"
-align = 1
 
 [node name="LobbyPlayer3" parent="Lobby/HBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
@@ -118,36 +94,12 @@ margin_left = 411.0
 margin_right = 613.0
 margin_bottom = 360.0
 
-[node name="PlayerName" type="Label" parent="Lobby/HBoxContainer/LobbyPlayer3"]
-anchor_left = 0.508
-anchor_top = 0.794
-anchor_right = 0.508
-anchor_bottom = 0.794
-margin_left = -46.016
-margin_top = -6.84
-margin_right = 45.984
-margin_bottom = 7.16
-text = "p3"
-align = 1
-
 [node name="LobbyPlayer4" parent="Lobby/HBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 617.0
 margin_right = 819.0
 margin_bottom = 360.0
-
-[node name="PlayerName" type="Label" parent="Lobby/HBoxContainer/LobbyPlayer4"]
-anchor_left = 0.508
-anchor_top = 0.797
-anchor_right = 0.508
-anchor_bottom = 0.797
-margin_left = -46.016
-margin_top = -6.92001
-margin_right = 45.984
-margin_bottom = 7.07999
-text = "p4"
-align = 1
 
 [node name="StartGame" parent="Lobby" instance=ExtResource( 8 )]
 visible = false
