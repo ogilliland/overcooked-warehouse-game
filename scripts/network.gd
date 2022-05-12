@@ -12,6 +12,7 @@ var is_host: bool = false
 # Create placeholder reference to game scene which we populate on ready in the game script
 # This is a bit hacky but it works for now ¯\_(ツ)_/¯
 var game: Spatial
+var lobby: Control
 
 func _ready() -> void:
 	for ip in IP.get_local_addresses():
@@ -23,10 +24,10 @@ func _ready() -> void:
 
 func _server_connected() -> void:
 	print_debug("Connected to server!")
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.1), "timeout")
 	var own_id = get_tree().get_network_unique_id()
-	print(own_id)
 	Players.players[own_id] = Players.myName
+	lobby.render_players()
 
 func _server_disconnected() -> void:
 	print_debug("Disconnected from server!")
@@ -40,6 +41,7 @@ func create_server() -> void:
 	# Instance a player for the server host on their own machine
 	game.instance_player(get_tree().get_network_unique_id())
 	Players.players[1] = Players.myName
+	lobby.render_players()
 
 func join_server() -> void:
 	client = NetworkedMultiplayerENet.new()

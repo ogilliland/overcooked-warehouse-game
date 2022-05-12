@@ -10,20 +10,22 @@ onready var players = [player1, player2, player3, player4]
 
 
 func _ready():
+	Network.lobby = self
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 
 
 func _player_connected(id: int):
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.1), "timeout")
 	render_players()
 
 
 func render_players():
 	var i = 0
 	for key in Players.players:
-		print("Player " + str(key))
+#		print("Player " + str(key))
 		players[i].text = Players.players[key]
 		i += 1
+	print_debug("New player joined")
 	print_debug(Players.players)
 
 
@@ -33,7 +35,6 @@ func show_lobby() -> void:
 		start_button.visible = true
 	else:
 		start_button.visible = false
-	render_players()
 
 
 func _on_start_game_pressed():

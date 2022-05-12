@@ -40,8 +40,6 @@ func _player_connected(id: int) -> void:
 	game.instance_player(id)
 	# Keep a map with the names
 	rpc_id(id, "register_player", Players.myName)
-	yield(get_tree().create_timer(0.5), "timeout")
-	print(Players.players)
 
 
 func _player_disconnected(id: int) -> void:
@@ -84,7 +82,7 @@ remote func register_player(player_name: String):
 	var id = get_tree().get_rpc_sender_id()
 	# Store the info
 	Players.players[id] = player_name
-	print("registered player " + player_name)
+	print("Registered player " + player_name)
 
 
 func set_player_name() -> void:
