@@ -109,9 +109,7 @@ position = Vector2( 481, 22 )
 [node name="RoundTimerLabel" type="Label" parent="Node2D"]
 margin_right = 102.0
 margin_bottom = 39.0
-rect_scale = Vector2( 1.27205, 1.27205 )
-rect_pivot_offset = Vector2( 29.926, 11.9704 )
-custom_colors/font_color = Color( 1, 0.45589, 0.45589, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "01:30"
 align = 1
@@ -123,6 +121,7 @@ panic_seconds_left = 5
 [node name="RoundTimer" type="Timer" parent="Node2D/RoundTimerLabel"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/RoundTimerLabel"]
+autoplay = "idle"
 anims/blink = SubResource( 3 )
 anims/idle = SubResource( 4 )
 
