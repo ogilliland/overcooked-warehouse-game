@@ -7,6 +7,7 @@ var server: NetworkedMultiplayerENet
 var client: NetworkedMultiplayerENet
 
 var ip_address: String = ""
+var is_host: bool = false
 
 # Create placeholder reference to game scene which we populate on ready in the game script
 # This is a bit hacky but it works for now ¯\_(ツ)_/¯

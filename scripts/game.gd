@@ -1,9 +1,14 @@
 extends Spatial
 
 var Player: PackedScene = preload("res://scenes/player.tscn")
+var round_timer: Control
 
 func _ready() -> void:
 	Network.game = self
+	round_timer = get_node("../../HUD/CenterContainer/Control/RoundTimerLabel")
+
+func start() -> void:
+	round_timer.start()
 
 func instance_player(id: int) -> void:
 	var player_instance = Player.instance()

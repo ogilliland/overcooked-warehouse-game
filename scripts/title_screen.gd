@@ -4,8 +4,7 @@ onready var main_menu = $MainMenu
 onready var server_ip_input = $MainMenu/ServerIP
 onready var device_ip_label = $MainMenu/LocalIP
 onready var game = $ViewportContainer/Viewport/Game
-onready var round_timer = $ViewportContainer/HUD/CenterContainer/Control/RoundTimerLabel
-
+onready var lobby = $Lobby
 
 func _ready() -> void:
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -37,13 +36,16 @@ func _server_connected() -> void:
 
 
 func _on_create_server_pressed() -> void:
+	Network.is_host = true
 	main_menu.hide()
+	lobby.show_lobby()
 	Network.create_server()
-	round_timer.start()
 
 
 func _on_join_server_pressed() -> void:
 	if server_ip_input.text != "":
+		Network.is_host = false
 		main_menu.hide()
+		lobby.show_lobby()
 		Network.ip_address = server_ip_input.text
 		Network.join_server()

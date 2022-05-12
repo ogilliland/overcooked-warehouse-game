@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=1]
+
+[node name="LobbyPlayer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1024, 600 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Player" parent="ViewportContainer/Viewport" instance=ExtResource( 1 )]
+script = null
+
+[node name="Body" parent="ViewportContainer/Viewport/Player" index="0"]
+layers = 32
+
+[node name="Head" parent="ViewportContainer/Viewport/Player" index="1"]
+layers = 32
+
+[node name="Facing" parent="ViewportContainer/Viewport/Player" index="2"]
+layers = 32
+
+[node name="Camera" type="Camera" parent="ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 2 )
+cull_mask = 1016800
+projection = 1
+size = 3.0
+
+[editable path="ViewportContainer/Viewport/Player"]
