@@ -45,9 +45,12 @@ func insert_into(target: Spatial, path: String) -> void:
 
 func destroy_and_score() -> void:
 #	rpc("add_score", 10) # TO DO - define scoring rules, should be a separate script
-	rpc("destroy")
+	rpc("_destroy")
 
-sync func destroy() -> void:
+func destroy() -> void:
+	rpc("_destroy")
+
+sync func _destroy() -> void:
 	queue_free()
 
 sync func update_parent(node_path: String, new_position: Vector3, new_collision_layer: int, new_is_held: bool) -> void:

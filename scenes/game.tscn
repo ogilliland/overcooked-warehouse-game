@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
+[ext_resource path="res://scenes/trash_can.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/game.gd" type="Script" id=3]
 [ext_resource path="res://scenes/workstation.tscn" type="PackedScene" id=4]
@@ -50,3 +51,6 @@ item_type = ExtResource( 6 )
 
 [node name="FinishedBoxes" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4 )
+
+[node name="TrashCan" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1 )
