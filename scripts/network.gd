@@ -23,6 +23,10 @@ func _ready() -> void:
 
 func _server_connected() -> void:
 	print_debug("Connected to server!")
+	yield(get_tree().create_timer(0.5), "timeout")
+	var own_id = get_tree().get_network_unique_id()
+	print(own_id)
+	Players.players[own_id] = Players.myName
 
 func _server_disconnected() -> void:
 	print_debug("Disconnected from server!")
@@ -35,6 +39,7 @@ func create_server() -> void:
 	# Use the reference to the game scene populated earlier
 	# Instance a player for the server host on their own machine
 	game.instance_player(get_tree().get_network_unique_id())
+	Players.players[1] = Players.myName
 
 func join_server() -> void:
 	client = NetworkedMultiplayerENet.new()
