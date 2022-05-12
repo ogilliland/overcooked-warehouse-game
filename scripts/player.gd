@@ -33,6 +33,8 @@ func _input(event: InputEvent) -> void:
 				if not nearest_object == null:
 					if nearest_object.is_in_group("items"):
 						nearest_object.pick_up(self)
+					elif nearest_object.is_in_group("workstations"):
+						nearest_object.pick_up(self)
 			else: # Already holding an item
 				held_item.get_child(0).put_down()
 

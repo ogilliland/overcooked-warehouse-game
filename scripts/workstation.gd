@@ -6,8 +6,7 @@ onready var mesh_array = [
 	$MeshInstance
 ]
 
-# TO DO - synchronise item positions when new player connects?
-# Or we can avoid this by starting all players at same state (lobby) and hoping for no desync!
+onready var held_item: Spatial = $HeldItem
 
 func glow_enable() -> void:
 	for mesh_instance in mesh_array:
@@ -16,3 +15,17 @@ func glow_enable() -> void:
 func glow_disable() -> void:
 	for mesh_instance in mesh_array:
 		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.0
+
+func pick_up(player: KinematicBody) -> void:
+	print(has_item())
+	print("PICK UP!")
+	if has_item():
+		var item = held_item.get_child(0)
+		item.pick_up(player)
+
+func put_down(player: KinematicBody) -> void:
+	if not has_item():
+		pass
+
+func has_item() -> bool:
+	return (not held_item.get_child_count() == 0)
