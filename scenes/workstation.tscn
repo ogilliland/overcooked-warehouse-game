@@ -19,6 +19,7 @@ emission_operator = 0
 emission_on_uv2 = false
 
 [sub_resource type="CubeMesh" id=1]
+resource_local_to_scene = true
 material = SubResource( 2 )
 size = Vector3( 1, 0.5, 1 )
 
