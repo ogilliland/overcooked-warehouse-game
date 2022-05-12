@@ -2,9 +2,9 @@ extends Spatial
 
 # TO DO - update this when real meshes are defined
 # Also make sure "local to scene" is enabled on the material for glow to work
-onready var mesh_array = [
-	$MeshInstance
-]
+#onready var mesh_array = [
+#	$MeshInstance
+#]
 
 onready var held_item: Spatial = $HeldItem
 

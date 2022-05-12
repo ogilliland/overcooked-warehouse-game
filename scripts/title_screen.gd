@@ -1,8 +1,9 @@
 extends Control
 
 onready var main_menu = $MainMenu
-onready var server_ip_input = $MainMenu/ServerIP
-onready var device_ip_label = $MainMenu/LocalIP
+# TO DO - update these paths to IP addresses
+onready var server_ip_input = $MainMenu/NewGame/ServerIP
+onready var device_ip_label = $Lobby/LocalIP
 onready var game = $GameViewport/Viewport/Game
 onready var lobby = $Lobby
 
@@ -10,7 +11,7 @@ func _ready() -> void:
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 	get_tree().connect("connected_to_server", self, "_server_connected")
-
+	
 	device_ip_label.text = Network.ip_address
 
 

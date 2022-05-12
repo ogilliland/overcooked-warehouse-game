@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/title_screen.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game.tscn" type="PackedScene" id=2]
@@ -6,6 +6,12 @@
 [ext_resource path="res://scenes/lobby_player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/lobby.gd" type="Script" id=5]
 [ext_resource path="res://scripts/scoreboard.gd" type="Script" id=6]
+[ext_resource path="res://textures/hf_game_logo.png" type="Texture" id=6]
+[ext_resource path="res://textures/hf_game_start_screen_bg.png" type="Texture" id=7]
+[ext_resource path="res://scenes/custom_button.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scripts/main_menu.gd" type="Script" id=9]
+[ext_resource path="res://fonts/lemonmilk_x32.tres" type="DynamicFont" id=10]
+[ext_resource path="res://fonts/lemonmilk_x32_outline.tres" type="DynamicFont" id=11]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -54,6 +60,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
+[node name="LocalIP" type="Label" parent="Lobby"]
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.1
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 11 )
+text = "127.0.0.1"
+align = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Lobby"]
 anchor_left = 0.1
 anchor_top = 0.2
@@ -95,40 +110,92 @@ margin_right = 557.0
 margin_bottom = 497.0
 text = "Start Game"
 
-[node name="MainMenu" type="VBoxContainer" parent="."]
+[node name="MainMenu" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 9 )
+
+[node name="Background" type="TextureRect" parent="MainMenu"]
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 6
+
+[node name="LogoContainer" type="CenterContainer" parent="MainMenu"]
+anchor_right = 2.857
+anchor_bottom = 1.5
+rect_scale = Vector2( 0.35, 0.35 )
+
+[node name="Logo" type="TextureRect" parent="MainMenu/LogoContainer"]
+margin_left = 913.0
+margin_top = 200.0
+margin_right = 2011.0
+margin_bottom = 699.0
+texture = ExtResource( 6 )
+
+[node name="MenuButtons" type="VBoxContainer" parent="MainMenu"]
 anchor_left = 0.25
-anchor_top = 0.35
+anchor_top = 0.45
 anchor_right = 0.75
 anchor_bottom = 0.5
-margin_bottom = -16.2
 custom_constants/separation = 20
 
-[node name="LocalIP" type="Label" parent="MainMenu"]
+[node name="NewGame" parent="MainMenu/MenuButtons" instance=ExtResource( 8 )]
+anchor_right = 0.0
 margin_right = 512.0
-margin_bottom = 14.0
-text = "127.0.0.1"
+text = "New Game"
+
+[node name="Exit" parent="MainMenu/MenuButtons" instance=ExtResource( 8 )]
+anchor_right = 0.0
+margin_top = 68.0
+margin_right = 512.0
+margin_bottom = 116.0
+text = "Exit"
+
+[node name="NewGame" type="VBoxContainer" parent="MainMenu"]
+visible = false
+anchor_left = 0.25
+anchor_top = 0.45
+anchor_right = 0.75
+anchor_bottom = 0.5
+custom_constants/separation = 20
+
+[node name="CreateServer" parent="MainMenu/NewGame" instance=ExtResource( 8 )]
+anchor_right = 0.0
+margin_right = 512.0
+text = "Create Server"
+
+[node name="OrLabel" type="Label" parent="MainMenu/NewGame"]
+margin_top = 68.0
+margin_right = 512.0
+margin_bottom = 111.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 11 )
+text = "- OR -"
 align = 1
+valign = 1
 
-[node name="CreateServer" type="Button" parent="MainMenu"]
-margin_top = 34.0
+[node name="ServerIP" type="LineEdit" parent="MainMenu/NewGame"]
+margin_top = 131.0
 margin_right = 512.0
-margin_bottom = 54.0
-text = "Create server"
-
-[node name="ServerIP" type="LineEdit" parent="MainMenu"]
-margin_top = 74.0
-margin_right = 512.0
-margin_bottom = 98.0
+margin_bottom = 184.0
+custom_fonts/font = ExtResource( 10 )
 align = 1
 placeholder_text = "Enter IP Address..."
 
-[node name="JoinServer" type="Button" parent="MainMenu"]
-margin_top = 118.0
+[node name="JoinServer" parent="MainMenu/NewGame" instance=ExtResource( 8 )]
+anchor_right = 0.0
+margin_top = 204.0
 margin_right = 512.0
-margin_bottom = 138.0
-text = "Join server"
+margin_bottom = 252.0
+text = "Join Server"
 
 [connection signal="pressed" from="GameViewport/HUD/TestAddPoints" to="GameViewport/HUD/Scoreboard" method="_on_TestAddPoints_pressed"]
 [connection signal="pressed" from="Lobby/StartGame" to="Lobby" method="_on_start_game_pressed"]
-[connection signal="pressed" from="MainMenu/CreateServer" to="." method="_on_create_server_pressed"]
-[connection signal="pressed" from="MainMenu/JoinServer" to="." method="_on_join_server_pressed"]
+[connection signal="pressed" from="MainMenu/MenuButtons/NewGame" to="MainMenu" method="_on_new_game_pressed"]
+[connection signal="pressed" from="MainMenu/MenuButtons/Exit" to="MainMenu" method="_on_exit_pressed"]
+[connection signal="pressed" from="MainMenu/NewGame/CreateServer" to="." method="_on_create_server_pressed"]
+[connection signal="pressed" from="MainMenu/NewGame/JoinServer" to="." method="_on_join_server_pressed"]
