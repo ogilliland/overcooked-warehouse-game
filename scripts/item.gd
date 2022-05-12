@@ -23,18 +23,21 @@ func glow_disable() -> void:
 
 func pick_up(player: KinematicBody) -> void:
 	if not is_held:
-		rpc("update_parent", player.name, Vector3(0, 0, 0), 2)
+		rpc("update_parent", player.name+"/HeldItem", Vector3(0, 0, 0), 2, true)
 
 func put_down(target: Spatial = null) -> void:
 	if is_held:
-		var player_position = get_parent().get_parent().transform.origin
-		rpc("update_parent", Network.game, player_position, 1)
+		var new_position = global_transform.origin
+		new_position.y = 0
+		rpc("update_parent", ".", new_position, 1, false)
 
-sync func update_parent(player_id: String, new_position: Vector3, new_collision_layer: int) -> void:
+sync func update_parent(node_path: String, new_position: Vector3, new_collision_layer: int, new_is_held: bool) -> void:
 	get_parent().remove_child(self)
-	var new_parent = Network.game.get_node(player_id).held_item
+	var new_parent = Network.game.get_node(node_path)
 	new_parent.add_child(self)
 	translation = new_position
 	# Prevent held items from interfering with player raycast
 	area.collision_layer = new_collision_layer
 	area.collision_mask = new_collision_layer
+	# Tracking state
+	is_held = new_is_held

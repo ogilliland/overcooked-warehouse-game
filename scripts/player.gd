@@ -29,8 +29,12 @@ func set_puppet_translation(new_translation: Vector3) -> void:
 func _input(event: InputEvent) -> void:
 	if is_network_master():
 		if event.is_action_pressed("interact"):
-			if nearest_object.is_in_group("items"):
-				nearest_object.pick_up(self)
+			if held_item.get_child_count() == 0:
+				if not nearest_object == null:
+					if nearest_object.is_in_group("items"):
+						nearest_object.pick_up(self)
+			else: # Already holding an item
+				held_item.get_child(0).put_down()
 
 func _physics_process(delta: float) -> void:
 	var target_angle = 0 # Will be used later to rotate player
