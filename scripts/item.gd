@@ -48,7 +48,8 @@ func insert_into(target: Spatial, path: String) -> void:
 
 func destroy_and_score() -> void:
 	if BoxInit.check_box(self):
-		Scoreboard.add_score(self)
+#		Scoreboard.add_score(self)
+		Scoreboard.add_score()
 	rpc("_destroy")
 
 func destroy() -> void:
