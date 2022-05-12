@@ -10,7 +10,9 @@ var angle: float
 var nearby_objects: Array
 var nearest_object: Spatial
 
-onready var tween = $Tween
+onready var held_item: Spatial = $HeldItem
+
+onready var tween: Tween = $Tween
 puppet var puppet_translation: Vector3 setget set_puppet_translation
 puppet var puppet_velocity: Vector3
 puppet var puppet_angle: float
@@ -23,6 +25,12 @@ func set_puppet_translation(new_translation: Vector3) -> void:
 	puppet_translation = new_translation
 	tween.interpolate_property(self, "translation", translation, puppet_translation, 0.1)
 	tween.start()
+
+func _input(event: InputEvent) -> void:
+	if is_network_master():
+		if event.is_action_pressed("interact"):
+			if nearest_object.is_in_group("items"):
+				nearest_object.pick_up(self)
 
 func _physics_process(delta: float) -> void:
 	var target_angle = 0 # Will be used later to rotate player
@@ -85,6 +93,9 @@ func _on_interaction_area_exited(area: Area) -> void:
 	# Assuming the area is always a direct child of the node we're interested in
 	if area.get_parent().has_method("glow_disable"):
 		area.get_parent().glow_disable()
+	
+	if nearest_object == area.get_parent():
+		nearest_object = null
 	
 	nearby_objects.erase(area.get_parent())
 	if nearby_objects.size() > 0:

@@ -1,6 +1,6 @@
 extends Spatial
 
-var Player = preload("res://scenes/player.tscn")
+var Player: PackedScene = preload("res://scenes/player.tscn")
 
 func _ready() -> void:
 	Network.game = self
