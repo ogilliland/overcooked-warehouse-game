@@ -15,6 +15,7 @@ emission_operator = 0
 emission_on_uv2 = false
 
 [sub_resource type="SphereMesh" id=3]
+resource_local_to_scene = true
 material = SubResource( 2 )
 radius = 0.175
 height = 0.35

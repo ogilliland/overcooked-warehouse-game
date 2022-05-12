@@ -40,7 +40,8 @@ func insert_into(target: Spatial, path: String) -> void:
 		var item_container = target.held_item.get_child(0)
 		var num_children = item_container.children_container.get_child_count() + 1
 		if num_children <= item_container.MAX_ITEMS:
-			rpc("update_parent", target.name+path+"/Children", Vector3(0, 0.5 * num_children, 0), 2, false)
+			var offset = item_container.find_offset(num_children)
+			rpc("update_parent", target.name+path+"/Children", Vector3(0, 0.5, 0) + offset, 2, false)
 
 func destroy_and_score() -> void:
 #	rpc("add_score", 10) # TO DO - define scoring rules, should be a separate script
