@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/item_container.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/hf_bag.tscn" type="PackedScene" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
 resource_local_to_scene = true
@@ -19,4 +20,8 @@ size = Vector3( 0.35, 0.35, 0.35 )
 [node name="KitBag" groups=["kit_bags"] instance=ExtResource( 1 )]
 
 [node name="MeshInstance" parent="." index="1"]
+visible = false
 mesh = SubResource( 2 )
+
+[node name="hf_bag" parent="." index="3" instance=ExtResource( 2 )]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.6, 0, 0, 0 )

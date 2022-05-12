@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://models/hf_bag.material" type="Material" id=1]
+[ext_resource path="res://models/hf_bag.FBX" type="PackedScene" id=2]
+
+[node name="hf_bag" instance=ExtResource( 2 )]
+
+[node name="Box002" parent="RootNode" index="0"]
+material/0 = ExtResource( 1 )
