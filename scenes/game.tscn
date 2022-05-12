@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/trash_can.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/camera.tscn" type="PackedScene" id=2]
@@ -7,11 +7,16 @@
 [ext_resource path="res://scenes/item_source.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/tomato.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/box.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/kit_bag.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/finished_boxes.tscn" type="PackedScene" id=9]
 [ext_resource path="res://default_env.tres" type="Environment" id=10]
 [ext_resource path="res://worker.tscn" type="PackedScene" id=11]
 [ext_resource path="res://models/floor.png" type="Texture" id=12]
 [ext_resource path="res://models/floor_texture.jpg" type="Texture" id=13]
+[ext_resource path="res://scenes/broccoli.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/carrot.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/turkey.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/steak.tscn" type="PackedScene" id=17]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 10, 10 )
@@ -155,11 +160,11 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.04904
 
 [node name="ItemSource" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0 )
-item_type = ExtResource( 7 )
+item_type = ExtResource( 14 )
 
 [node name="ItemSource3" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 5 )
-item_type = ExtResource( 6 )
+item_type = ExtResource( 8 )
 
 [node name="ItemSource4" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1 )
@@ -167,19 +172,19 @@ item_type = ExtResource( 6 )
 
 [node name="ItemSource5" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1 )
-item_type = ExtResource( 6 )
+item_type = ExtResource( 15 )
 
 [node name="ItemSource6" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5 )
-item_type = ExtResource( 6 )
+item_type = ExtResource( 7 )
 
 [node name="ItemSource7" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5 )
-item_type = ExtResource( 6 )
+item_type = ExtResource( 16 )
 
 [node name="ItemSource8" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5 )
-item_type = ExtResource( 6 )
+item_type = ExtResource( 17 )
 
 [node name="FinishedBoxes" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0.5 )
