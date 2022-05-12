@@ -1,6 +1,6 @@
 extends Control
 
-onready var start_button: Button = $StartGame
+onready var start_button: Control = $StartGame
 
 func show_lobby() -> void:
 	visible = true
