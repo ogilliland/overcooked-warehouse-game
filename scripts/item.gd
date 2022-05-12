@@ -1,6 +1,6 @@
 extends Spatial
 
-onready var area: Area = $Area
+onready var area: Area = $InteractArea
 
 var is_held: bool
 

@@ -25,13 +25,13 @@ size = Vector3( 1, 0.5, 1 )
 [node name="Workstation" type="StaticBody" groups=["workstations"]]
 script = ExtResource( 1 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="StaticBodyCollision" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
 shape = SubResource( 3 )
 
-[node name="Area" type="Area" parent="."]
+[node name="InteractArea" type="Area" parent="."]
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
+[node name="AreaShape" type="CollisionShape" parent="InteractArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 4 )
 

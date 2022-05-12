@@ -14,7 +14,7 @@ albedo_color = Color( 1, 0, 1, 1 )
 [node name="Game" type="Spatial"]
 script = ExtResource( 3 )
 
-[node name="CameraPos" parent="." instance=ExtResource( 2 )]
+[node name="Camera" parent="." instance=ExtResource( 2 )]
 
 [node name="Floor" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
