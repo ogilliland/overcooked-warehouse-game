@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/trash_can.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/camera.tscn" type="PackedScene" id=2]
@@ -10,21 +10,12 @@
 [ext_resource path="res://scenes/kit_bag.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/finished_boxes.tscn" type="PackedScene" id=9]
 [ext_resource path="res://default_env.tres" type="Environment" id=10]
-[ext_resource path="res://worker.tscn" type="PackedScene" id=11]
-[ext_resource path="res://models/floor.png" type="Texture" id=12]
 [ext_resource path="res://models/floor_texture.jpg" type="Texture" id=13]
 [ext_resource path="res://scenes/broccoli.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/carrot.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/turkey.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/steak.tscn" type="PackedScene" id=17]
-
-[sub_resource type="PlaneMesh" id=1]
-size = Vector2( 10, 10 )
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.537255, 0.486275, 0.486275, 1 )
-albedo_texture = ExtResource( 12 )
-uv1_scale = Vector3( 2, 2, 2 )
+[ext_resource path="res://scenes/hf_logo_pole.tscn" type="PackedScene" id=18]
 
 [sub_resource type="PlaneMesh" id=3]
 size = Vector2( 10, 10 )
@@ -37,12 +28,6 @@ uv1_scale = Vector3( 10, 10, 1 )
 script = ExtResource( 3 )
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
-
-[node name="Floor" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0 )
-visible = false
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
 
 [node name="Workstation34" parent="." instance=ExtResource( 4 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0, -4 )
@@ -223,10 +208,11 @@ light_energy = 5.0
 spot_range = 4.5
 spot_angle = 44.29
 
-[node name="worker" parent="." instance=ExtResource( 11 )]
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="Floor" type="MeshInstance" parent="."]
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
+
+[node name="HFLogoPole" parent="." instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -2 )
 
 [editable path="Camera"]
