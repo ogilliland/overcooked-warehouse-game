@@ -223,6 +223,6 @@ mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 
 [node name="HFLogoPole" parent="." instance=ExtResource( 18 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0 )
 
 [editable path="Camera"]
