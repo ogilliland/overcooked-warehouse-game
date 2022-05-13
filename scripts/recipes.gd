@@ -29,7 +29,7 @@ func _randomize() -> void:
 		ingredient_scenes.append(packed_scene.instance())
 	
 	recipes.append({
-		"color": Color(255, 0, 0),
+		"color": Color(1, 0, 0),
 		"ingredients": [
 			ingredient_scenes[0],
 			ingredient_scenes[1],
@@ -38,7 +38,7 @@ func _randomize() -> void:
 		"type": "red"
 	})
 	recipes.append({
-		"color": Color(0, 255, 0),
+		"color": Color(0, 1, 0),
 		"ingredients": [
 			ingredient_scenes[1],
 			ingredient_scenes[2],
@@ -47,7 +47,7 @@ func _randomize() -> void:
 		"type": "green"
 	})
 	recipes.append({
-		"color": Color(0, 0, 255),
+		"color": Color(0, 0, 1),
 		"ingredients": [
 			ingredient_scenes[1],
 			ingredient_scenes[3],

@@ -6,19 +6,22 @@ export var twoD_icon: StreamTexture
 
 var is_held: bool = false
 
+var base_emission: float = 0.0
+var active_emission: float = 0.25
+
 export(Array, NodePath) var mesh_array = []
 
 func glow_enable() -> void:
 	for mesh_path in mesh_array:
 		var mesh_instance = get_node(mesh_path)
 		for surface_id in range(mesh_instance.get_surface_material_count()):
-			mesh_instance.get_surface_material(surface_id).emission_energy = 0.25
+			mesh_instance.get_surface_material(surface_id).emission_energy = active_emission
 
 func glow_disable() -> void:
 	for mesh_path in mesh_array:
 		var mesh_instance = get_node(mesh_path)
 		for surface_id in range(mesh_instance.get_surface_material_count()):
-			mesh_instance.get_surface_material(surface_id).emission_energy = 0.0
+			mesh_instance.get_surface_material(surface_id).emission_energy = base_emission
 
 func pick_up(player_id: String) -> void:
 	if not is_held:

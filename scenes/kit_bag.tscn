@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/item_container.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/hf_bag.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/kit_bag.gd" type="Script" id=3]
+[ext_resource path="res://models/hf_bag_diffuse.jpg" type="Texture" id=4]
 
 [sub_resource type="SpatialMaterial" id=1]
 resource_local_to_scene = true
@@ -18,6 +19,18 @@ resource_local_to_scene = true
 material = SubResource( 1 )
 size = Vector3( 0.35, 0.35, 0.35 )
 
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+resource_name = "Material #29"
+params_cull_mode = 2
+albedo_texture = ExtResource( 4 )
+metallic = 1.0
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 0.0
+emission_operator = 0
+emission_on_uv2 = false
+
 [node name="KitBag" groups=["kit_bags"] instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 mesh_array = [ NodePath("hf_bag/RootNode/Box002") ]
@@ -28,5 +41,8 @@ mesh = SubResource( 2 )
 
 [node name="hf_bag" parent="." index="3" instance=ExtResource( 2 )]
 transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.6, 0, 0.1, 0 )
+
+[node name="Box002" parent="hf_bag/RootNode" index="0"]
+material/0 = SubResource( 3 )
 
 [editable path="hf_bag"]
