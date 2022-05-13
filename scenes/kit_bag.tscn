@@ -20,6 +20,7 @@ size = Vector3( 0.35, 0.35, 0.35 )
 
 [node name="KitBag" groups=["kit_bags"] instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+mesh_array = [ NodePath("hf_bag/RootNode/Box002") ]
 
 [node name="MeshInstance" parent="." index="1"]
 visible = false
@@ -27,3 +28,5 @@ mesh = SubResource( 2 )
 
 [node name="hf_bag" parent="." index="3" instance=ExtResource( 2 )]
 transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.6, 0, 0.1, 0 )
+
+[editable path="hf_bag"]

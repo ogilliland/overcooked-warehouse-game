@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/finished_boxes.gd" type="Script" id=1]
 [ext_resource path="res://models/platform_large.glb" type="PackedScene" id=3]
@@ -6,10 +6,29 @@
 
 [sub_resource type="BoxShape" id=1]
 
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+albedo_color = Color( 0.662745, 0.662745, 0.662745, 1 )
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 0.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=4]
+resource_local_to_scene = true
+albedo_color = Color( 0.537255, 0.537255, 0.537255, 1 )
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 0.0
+emission_operator = 0
+emission_on_uv2 = false
+
 [sub_resource type="BoxShape" id=2]
 
 [node name="FinishedBoxes" type="Spatial" groups=["finished_boxes"]]
 script = ExtResource( 1 )
+mesh_array = [ NodePath("PlatformLarge/tmpParent/platform_large") ]
 
 [node name="GoalArea" type="Area" parent="."]
 monitoring = false
@@ -21,6 +40,11 @@ shape = SubResource( 1 )
 [node name="PlatformLarge" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1.5 )
 
+[node name="platform_large" parent="PlatformLarge/tmpParent" index="0"]
+material/0 = SubResource( 3 )
+material/1 = SubResource( 4 )
+material/2 = SubResource( 4 )
+
 [node name="Truck" parent="." instance=ExtResource( 4 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 0, -0.125 )
 
@@ -29,3 +53,5 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 0,
 [node name="CollisionShape" type="CollisionShape" parent="Barrier"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0 )
 shape = SubResource( 2 )
+
+[editable path="PlatformLarge"]

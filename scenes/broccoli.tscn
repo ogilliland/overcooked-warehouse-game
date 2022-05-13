@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/item.gd" type="Script" id=1]
 [ext_resource path="res://models/broccoli.glb" type="PackedScene" id=2]
@@ -22,10 +22,20 @@ material = SubResource( 2 )
 radius = 0.175
 height = 0.35
 
+[sub_resource type="SpatialMaterial" id=4]
+resource_local_to_scene = true
+albedo_color = Color( 0.32549, 0.592157, 0.368627, 1 )
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 0.0
+emission_operator = 0
+emission_on_uv2 = false
+
 [node name="Broccoli" type="Spatial" groups=["ingredients", "items"]]
 script = ExtResource( 1 )
 type = "BROCCOLI"
 twoD_icon = ExtResource( 3 )
+mesh_array = [ NodePath("broccoli/tmpParent/broccoli") ]
 
 [node name="InteractArea" type="Area" parent="."]
 monitoring = false
@@ -41,3 +51,9 @@ mesh = SubResource( 3 )
 material/0 = null
 
 [node name="broccoli" parent="." instance=ExtResource( 2 )]
+
+[node name="broccoli" parent="broccoli/tmpParent" index="0"]
+material/0 = SubResource( 4 )
+material/1 = SubResource( 4 )
+
+[editable path="broccoli"]

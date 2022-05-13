@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/item.gd" type="Script" id=1]
 [ext_resource path="res://models/tomato.glb" type="PackedScene" id=2]
@@ -22,10 +22,29 @@ material = SubResource( 2 )
 radius = 0.175
 height = 0.35
 
+[sub_resource type="SpatialMaterial" id=4]
+resource_local_to_scene = true
+albedo_color = Color( 1, 0.431373, 0.431373, 1 )
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 0.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=5]
+resource_local_to_scene = true
+albedo_color = Color( 0.572549, 0.752941, 0.345098, 1 )
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 0.0
+emission_operator = 0
+emission_on_uv2 = false
+
 [node name="Tomato" type="Spatial" groups=["ingredients", "items"]]
 script = ExtResource( 1 )
 type = "TOMATO"
 twoD_icon = ExtResource( 3 )
+mesh_array = [ NodePath("Tomato/tmpParent/tomato") ]
 
 [node name="InteractArea" type="Area" parent="."]
 monitoring = false
@@ -42,3 +61,9 @@ material/0 = null
 
 [node name="Tomato" parent="." instance=ExtResource( 2 )]
 transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0 )
+
+[node name="tomato" parent="Tomato/tmpParent" index="0"]
+material/0 = SubResource( 4 )
+material/1 = SubResource( 5 )
+
+[editable path="Tomato"]

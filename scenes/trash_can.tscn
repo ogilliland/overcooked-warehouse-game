@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/trash_can.gd" type="Script" id=1]
 [ext_resource path="res://models/structure_closed.glb" type="PackedScene" id=2]
@@ -9,6 +9,10 @@ extents = Vector3( 0.5, 0.25, 0.5 )
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 0.6, 1, 0.6 )
 
+[sub_resource type="CubeMesh" id=6]
+resource_local_to_scene = true
+size = Vector3( 0.79, 0.25, 0.79 )
+
 [sub_resource type="SpatialMaterial" id=5]
 resource_local_to_scene = true
 albedo_color = Color( 0, 0, 0, 1 )
@@ -18,13 +22,27 @@ emission_energy = 0.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="CubeMesh" id=6]
+[sub_resource type="SpatialMaterial" id=7]
 resource_local_to_scene = true
-material = SubResource( 5 )
-size = Vector3( 0.79, 0.25, 0.79 )
+albedo_color = Color( 0.662745, 0.662745, 0.662745, 1 )
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 0.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=8]
+resource_local_to_scene = true
+albedo_color = Color( 0.537255, 0.537255, 0.537255, 1 )
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 0.0
+emission_operator = 0
+emission_on_uv2 = false
 
 [node name="TrashCan" type="StaticBody" groups=["trash_cans"]]
 script = ExtResource( 1 )
+mesh_array = [ NodePath("MeshInstance"), NodePath("StructureClosed/tmpParent/structure_closed") ]
 
 [node name="StaticBodyCollision" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
@@ -40,7 +58,14 @@ shape = SubResource( 4 )
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
 mesh = SubResource( 6 )
-material/0 = null
+material/0 = SubResource( 5 )
 
 [node name="StructureClosed" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, -2, 0, -1.5 )
+
+[node name="structure_closed" parent="StructureClosed/tmpParent" index="0"]
+material/0 = SubResource( 7 )
+material/1 = SubResource( 8 )
+material/2 = SubResource( 7 )
+
+[editable path="StructureClosed"]

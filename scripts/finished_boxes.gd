@@ -1,21 +1,19 @@
 extends Spatial
 
-
-# TO DO - update this when real meshes are defined
-# Also make sure "local to scene" is enabled on the material for glow to work
-#onready var mesh_array = [
-#	$MeshInstance
-#]
+export(Array, NodePath) var mesh_array = []
 
 func glow_enable() -> void:
-	pass
-#	for mesh_instance in mesh_array:
-#		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.05
+	for mesh_path in mesh_array:
+		var mesh_instance = get_node(mesh_path)
+		for surface_id in range(mesh_instance.get_surface_material_count()):
+			mesh_instance.get_surface_material(surface_id).emission_energy = 0.25
 
 func glow_disable() -> void:
-	pass
-#	for mesh_instance in mesh_array:
-# 		mesh_instance.mesh.surface_get_material(0).emission_energy = 0.0
+	for mesh_path in mesh_array:
+		var mesh_instance = get_node(mesh_path)
+		for surface_id in range(mesh_instance.get_surface_material_count()):
+			mesh_instance.get_surface_material(surface_id).emission_energy = 0.0
+
 
 func place(player: KinematicBody) -> void:
 	var player_item = player.held_item.get_child(0)
