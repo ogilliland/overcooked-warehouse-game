@@ -5,13 +5,14 @@ onready var BoxesTable = $BoxesTable
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	BoxInit.box_display = self
 	populate()
 
-#TODO: Figure out how to call this to update the table when boxes are completed
 func populate():
 	var children = BoxesTable.get_children()
 	for child in children:
-		BoxesTable.remove_child(child)
+#		BoxesTable.remove_child(child)
+		child.queue_free()
 	for box in BoxInit.visible_boxes:
 		var newRow = BoxRow.instance()
 		newRow.populate(box)

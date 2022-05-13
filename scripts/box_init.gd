@@ -5,6 +5,8 @@ onready var UpcomingBoxes = preload("res://scripts/upcoming_boxes_display.gd").n
 var invisible_boxes: Array
 var visible_boxes: Array
 
+var box_display: Control
+
 const recipes_available = ["red", "green", "blue"]
 #const recipes_available = ["red", "green", "blue", "orange"]
 
@@ -20,25 +22,26 @@ func _ready():
 	visible_boxes.append(invisible_boxes.pop_front())
 	visible_boxes.append(invisible_boxes.pop_front())
 
-	print(visible_boxes)
+	print_debug(visible_boxes)
 
 
-func check_box_done(box: Node):
-	var items = box.get_children()
-	var types: Array
-	for item in items:
-		types.append(item.type)
+#func check_box_done(box: Node):
+#	var items = box.get_children()
+#	var types: Array
+#	for item in items:
+#		types.append(item.type)
 
 
 func next_box(completedBox):
 	visible_boxes.erase(completedBox)
 	visible_boxes.append(invisible_boxes.pop_front())
+	box_display.populate()
 #	TODO: Not currently working because at this point, UpcomingBoxes doesn't know what the BoxesTable is
 #	UpcomingBoxes.populate()
 
 
 func check_box(box: Spatial) -> bool:
-	print("box is checked")
+	print_debug("Box is checked")
 	var box_recipes = box.get_contents()
 	for visible_box in visible_boxes:
 		var remaining = [] + visible_box.recipes
