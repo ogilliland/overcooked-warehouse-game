@@ -20,5 +20,5 @@ func add_score() -> void:
 	var value = 10
 	# TODO calculate score of a box
 	
-	rpc("_add_score", score)
+	rpc("_add_score", value)
 
