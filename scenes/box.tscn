@@ -38,7 +38,7 @@ visible = false
 mesh = SubResource( 2 )
 
 [node name="BoxModel" parent="." index="3" instance=ExtResource( 3 )]
-transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.01, 0 )
+transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.02, 0 )
 
 [node name="Box001" parent="BoxModel/RootNode" index="0"]
 material/0 = SubResource( 3 )
