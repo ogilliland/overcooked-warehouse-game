@@ -56,6 +56,9 @@ visible = false
 mesh = SubResource( 8 )
 material/0 = SubResource( 9 )
 
+[node name="InteractOrigin" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5 )
+
 [connection signal="timeout" from="NetworkTickRate" to="." method="_on_network_tick_rate_timeout"]
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_exited"]

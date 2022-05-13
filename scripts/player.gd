@@ -12,6 +12,7 @@ var nearest_object: Spatial
 
 onready var held_item: Spatial = $HeldItem
 onready var model: Spatial = $Worker
+onready var interact_origin: Spatial = $InteractOrigin
 
 onready var tween: Tween = $Tween
 puppet var puppet_translation: Vector3 setget set_puppet_translation
@@ -136,7 +137,7 @@ func update_nearest() -> void:
 	var min_dist = 9999 # Large default
 	
 	for object in nearby_objects:
-		var dist = (object.global_transform.origin - global_transform.origin).length()
+		var dist = (object.global_transform.origin - interact_origin.global_transform.origin).length()
 		if dist < min_dist:
 			nearest_object = object
 			min_dist = dist
