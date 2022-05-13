@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://textures/hourglass_ui.png" type="Texture" id=1]
 [ext_resource path="res://scripts/round_timer.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scripts/score_label.gd" type="Script" id=6]
 [ext_resource path="res://textures/button_green_blackoutline.png" type="Texture" id=7]
 [ext_resource path="res://textures/coin.png" type="Texture" id=8]
+[ext_resource path="res://fonts/lemonmilk_x32_outline.tres" type="DynamicFont" id=9]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/Xolonium-Regular.ttf"
@@ -206,6 +207,22 @@ align = 1
 valign = 1
 script = ExtResource( 6 )
 
+[node name="Middle" type="Control" parent="Center/CenterContainer"]
+margin_left = 334.0
+margin_right = 334.0
+
+[node name="TimeUp" type="Label" parent="Center/CenterContainer/Middle"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -113.0
+margin_top = 80.0
+margin_right = 119.0
+margin_bottom = 123.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 9 )
+text = "Out of Time!"
+
 [node name="UpcomingBoxes" parent="." instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -216,4 +233,5 @@ grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 148, 0 )
 
+[connection signal="round_over" from="Center/CenterContainer/HBoxContainer/TimerContainer/Control/RoundTimerLabel" to="." method="_on_round_over"]
 [connection signal="timeout" from="Center/CenterContainer/HBoxContainer/TimerContainer/Control/RoundTimerLabel/RoundTimer" to="Center/CenterContainer/HBoxContainer/TimerContainer/Control/RoundTimerLabel" method="_on_tick"]

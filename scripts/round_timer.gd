@@ -27,6 +27,7 @@ func stop():
 	timer.stop()
 	player.get_animation("blink").loop = false
 	emit_signal("round_over")
+	Network.game.end()
 
 
 func stringify_time(seconds: int) -> String:
