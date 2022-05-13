@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _server_connected() -> void:
 	print_debug("Connected to server!")
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	var own_id = get_tree().get_network_unique_id()
 	Players.players[own_id] = Players.myName
 	lobby.render_players()

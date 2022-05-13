@@ -15,7 +15,7 @@ func _ready():
 
 
 func _player_connected(id: int):
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	render_players()
 
 
