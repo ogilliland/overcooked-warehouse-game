@@ -40,6 +40,9 @@ func show_lobby() -> void:
 
 
 func _on_start_game_pressed():
+	rpc("_start_match")
+
+sync func _start_match() -> void:
 	visible = false
 	get_node("../GameViewport").visible = true
 	Network.game.start()
