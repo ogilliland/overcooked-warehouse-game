@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://textures/hourglass_ui.png" type="Texture" id=1]
 [ext_resource path="res://scripts/round_timer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/recipe_definition_display.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/upcoming_boxes_display.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/hud.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/Xolonium-Regular.ttf"
@@ -91,20 +92,37 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[node name="HUD" type="Control"]
+[node name="HUD" type="HBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource( 5 )
+round_timer_path = NodePath("Center/CenterContainer/Control/RoundTimerLabel")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="RecipeDefinitions" parent="." instance=ExtResource( 3 )]
+margin_right = 200.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="Center" type="Control" parent="."]
+margin_left = 204.0
+margin_right = 820.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="Center"]
 anchor_right = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
 
-[node name="Background" type="NinePatchRect" parent="CenterContainer"]
-margin_left = 428.0
-margin_right = 596.0
+[node name="Background" type="NinePatchRect" parent="Center/CenterContainer"]
+margin_left = 244.0
+margin_right = 412.0
 margin_bottom = 78.0
 texture = ExtResource( 1 )
 patch_margin_left = 120
@@ -112,14 +130,14 @@ patch_margin_top = 43
 patch_margin_right = 48
 patch_margin_bottom = 35
 
-[node name="Control" type="Control" parent="CenterContainer"]
-margin_left = 474.0
+[node name="Control" type="Control" parent="Center/CenterContainer"]
+margin_left = 290.0
 margin_top = 24.0
-margin_right = 549.0
+margin_right = 365.0
 margin_bottom = 54.0
 rect_min_size = Vector2( 75, 30 )
 
-[node name="RoundTimerLabel" type="Label" parent="CenterContainer/Control"]
+[node name="RoundTimerLabel" type="Label" parent="Center/CenterContainer/Control"]
 margin_left = 20.0
 margin_top = 3.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -131,20 +149,19 @@ script = ExtResource( 2 )
 total_round_time = "1:30"
 panic_seconds_left = 5
 
-[node name="RoundTimer" type="Timer" parent="CenterContainer/Control/RoundTimerLabel"]
+[node name="RoundTimer" type="Timer" parent="Center/CenterContainer/Control/RoundTimerLabel"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer/Control/RoundTimerLabel"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Center/CenterContainer/Control/RoundTimerLabel"]
 autoplay = "idle"
 anims/blink = SubResource( 3 )
 anims/idle = SubResource( 4 )
 
-[node name="RecipeDefinitions" parent="." instance=ExtResource( 3 )]
-anchor_bottom = 1.0
-
 [node name="UpcomingBoxes" parent="." instance=ExtResource( 4 )]
-anchor_left = 0.886
-anchor_right = 0.886
+margin_left = 824.0
+margin_right = 1024.0
+margin_bottom = 600.0
 grow_horizontal = 2
 grow_vertical = 2
+rect_min_size = Vector2( 200, 0 )
 
-[connection signal="timeout" from="CenterContainer/Control/RoundTimerLabel/RoundTimer" to="CenterContainer/Control/RoundTimerLabel" method="_on_tick"]
+[connection signal="timeout" from="Center/CenterContainer/Control/RoundTimerLabel/RoundTimer" to="Center/CenterContainer/Control/RoundTimerLabel" method="_on_tick"]

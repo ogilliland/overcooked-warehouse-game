@@ -5,7 +5,9 @@ var round_timer: Control
 
 func _ready() -> void:
 	Network.game = self
-	round_timer = get_node("../../HUD/CenterContainer/Control/RoundTimerLabel")
+	var hud = get_node("../../HUD")
+	round_timer = hud.get_round_timer()
+#	round_timer = get_node("../../HUD/CenterContainer/Control/RoundTimerLabel")
 
 func start() -> void:
 	round_timer.start()
