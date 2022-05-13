@@ -1,5 +1,7 @@
 extends Spatial
 
+onready var coin_explosion = preload("res://scenes/coin_explosion.tscn")
+
 onready var area: Area = $InteractArea
 export var type: String
 export var twoD_icon: StreamTexture
@@ -48,6 +50,10 @@ func insert_into(target: Spatial, path: String) -> void:
 func destroy_and_score() -> void:
 	if BoxInit.check_box(self):
 #		Scoreboard.add_score(self)
+		var particles_instance = coin_explosion.instance()
+		Network.game.add_child(particles_instance)
+		particles_instance.global_transform.origin = global_transform.origin
+		particles_instance.emitting = true
 		Scoreboard.add_score()
 	rpc("_destroy")
 
