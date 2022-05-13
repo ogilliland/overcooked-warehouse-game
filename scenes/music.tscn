@@ -7,14 +7,14 @@
 
 [node name="Music" type="AudioStreamPlayer"]
 stream = ExtResource( 1 )
-volume_db = -10.0
+volume_db = -20.0
 autoplay = true
 script = ExtResource( 3 )
 
 [node name="Coins" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -10.0
+volume_db = -25.0
 
 [node name="PickUp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-volume_db = 10.0
+volume_db = 5.0
