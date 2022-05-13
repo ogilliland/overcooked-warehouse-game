@@ -5,6 +5,10 @@ A fast-paced multiplayer party game inspired by Overcooked. Built in a single da
 
 ## How to Play
 
+### Controls
+
+WASD or arrow keys to move, space to interact with highlighted object.
+
 ### Hosting a Server
 * Enter your name
 * Click "create server"
