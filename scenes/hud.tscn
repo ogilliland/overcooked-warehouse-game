@@ -103,6 +103,8 @@ script = ExtResource( 5 )
 round_timer_path = NodePath("Center/CenterContainer/Control/RoundTimerLabel")
 
 [node name="RecipeDefinitions" parent="." instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_right = 200.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 200, 0 )
@@ -111,7 +113,7 @@ size_flags_vertical = 1
 
 [node name="Center" type="Control" parent="."]
 margin_left = 204.0
-margin_right = 820.0
+margin_right = 872.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 
@@ -121,8 +123,8 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Background" type="NinePatchRect" parent="Center/CenterContainer"]
-margin_left = 244.0
-margin_right = 412.0
+margin_left = 270.0
+margin_right = 438.0
 margin_bottom = 78.0
 texture = ExtResource( 1 )
 patch_margin_left = 120
@@ -131,9 +133,9 @@ patch_margin_right = 48
 patch_margin_bottom = 35
 
 [node name="Control" type="Control" parent="Center/CenterContainer"]
-margin_left = 290.0
+margin_left = 316.0
 margin_top = 24.0
-margin_right = 365.0
+margin_right = 391.0
 margin_bottom = 54.0
 rect_min_size = Vector2( 75, 30 )
 
@@ -157,11 +159,13 @@ anims/blink = SubResource( 3 )
 anims/idle = SubResource( 4 )
 
 [node name="UpcomingBoxes" parent="." instance=ExtResource( 4 )]
-margin_left = 824.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 876.0
 margin_right = 1024.0
 margin_bottom = 600.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_min_size = Vector2( 200, 0 )
+rect_min_size = Vector2( 148, 0 )
 
 [connection signal="timeout" from="Center/CenterContainer/Control/RoundTimerLabel/RoundTimer" to="Center/CenterContainer/Control/RoundTimerLabel" method="_on_tick"]

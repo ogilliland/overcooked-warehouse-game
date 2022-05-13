@@ -16,6 +16,6 @@ func _ready():
 #	pass
 
 func populate(box):
-	$HBoxContainer/RecipeColor.color = colorDict[box.recipes[0]]
-	$HBoxContainer/RecipeColor2.color = colorDict[box.recipes[1]]
-	$HBoxContainer/RecipeColor3.color = colorDict[box.recipes[2]]
+	$MarginContainer/HBoxContainer/RecipeColor.material.set_shader_param("blend_color", colorDict[box.recipes[0]])
+	$MarginContainer/HBoxContainer/RecipeColor2.material.set_shader_param("blend_color", colorDict[box.recipes[1]])
+	$MarginContainer/HBoxContainer/RecipeColor3.material.set_shader_param("blend_color", colorDict[box.recipes[2]])

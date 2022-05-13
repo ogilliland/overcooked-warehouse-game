@@ -1,7 +1,7 @@
 extends Control
 
 onready var BoxRow = preload("res://scenes/single_box_display.tscn")
-onready var BoxesTable = $BoxesTable
+onready var BoxesTable = $Margin/BoxesTable
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

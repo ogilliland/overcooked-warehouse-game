@@ -32,23 +32,6 @@ render_target_update_mode = 0
 
 [node name="HUD" parent="GameViewport" instance=ExtResource( 3 )]
 
-[node name="Scoreboard" type="Label" parent="GameViewport/HUD"]
-margin_left = 275.0
-margin_top = 14.0
-margin_right = 326.0
-margin_bottom = 28.0
-custom_colors/font_color = Color( 0.0117647, 0.654902, 0.219608, 1 )
-text = "Score: 0"
-script = ExtResource( 6 )
-
-[node name="TestAddPoints" type="Button" parent="GameViewport/HUD"]
-visible = false
-margin_left = 344.0
-margin_top = 11.0
-margin_right = 429.0
-margin_bottom = 31.0
-text = "Add points!"
-
 [node name="Lobby" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -202,7 +185,6 @@ margin_right = 512.0
 margin_bottom = 325.0
 text = "Join Server"
 
-[connection signal="pressed" from="GameViewport/HUD/TestAddPoints" to="GameViewport/HUD/Scoreboard" method="_on_TestAddPoints_pressed"]
 [connection signal="pressed" from="Lobby/StartGame" to="Lobby" method="_on_start_game_pressed"]
 [connection signal="pressed" from="MainMenu/MenuButtons/NewGame" to="MainMenu" method="_on_new_game_pressed"]
 [connection signal="pressed" from="MainMenu/MenuButtons/Exit" to="MainMenu" method="_on_exit_pressed"]
