@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sounds/background.mp3" type="AudioStream" id=1]
+[ext_resource path="res://sounds/pickup1.mp3" type="AudioStream" id=2]
+[ext_resource path="res://scripts/sounds.gd" type="Script" id=3]
+[ext_resource path="res://sounds/coins.mp3" type="AudioStream" id=4]
+
+[node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -40.0
+autoplay = true
+script = ExtResource( 3 )
+
+[node name="Coins" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -30.0
+
+[node name="PickUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -30.0

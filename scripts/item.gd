@@ -13,11 +13,13 @@ var active_emission: float = 0.25
 
 export(Array, NodePath) var mesh_array = []
 
+
 func glow_enable() -> void:
 	for mesh_path in mesh_array:
 		var mesh_instance = get_node(mesh_path)
 		for surface_id in range(mesh_instance.get_surface_material_count()):
 			mesh_instance.get_surface_material(surface_id).emission_energy = active_emission
+
 
 func glow_disable() -> void:
 	for mesh_path in mesh_array:
@@ -25,9 +27,11 @@ func glow_disable() -> void:
 		for surface_id in range(mesh_instance.get_surface_material_count()):
 			mesh_instance.get_surface_material(surface_id).emission_energy = base_emission
 
+
 func pick_up(player_id: String) -> void:
 	if not is_held:
-		rpc("update_parent", player_id+"/HeldItem", Vector3(0, 0, 0), 2, true)
+		rpc("update_parent", player_id + "/HeldItem", Vector3(0, 0, 0), 2, true)
+
 
 func put_down() -> void:
 	if is_held:
@@ -35,9 +39,11 @@ func put_down() -> void:
 		new_position.y = 0
 		rpc("update_parent", ".", new_position, 1, false)
 
+
 func place(target: Spatial) -> void:
 	if is_held:
-		rpc("update_parent", target.name+"/HeldItem", Vector3(0, 0, 0), 2, false)
+		rpc("update_parent", target.name + "/HeldItem", Vector3(0, 0, 0), 2, false)
+
 
 func insert_into(target: Spatial, path: String) -> void:
 	if is_held:
@@ -45,7 +51,14 @@ func insert_into(target: Spatial, path: String) -> void:
 		var num_children = item_container.children_container.get_child_count() + 1
 		if num_children <= item_container.MAX_ITEMS:
 			var offset = item_container.find_offset(num_children)
-			rpc("update_parent", target.name+path+"/Children", Vector3(0, 0.5, 0) + offset, 2, false)
+			rpc(
+				"update_parent",
+				target.name + path + "/Children",
+				Vector3(0, 0.5, 0) + offset,
+				2,
+				false
+			)
+
 
 func destroy_and_score() -> void:
 	if BoxInit.check_box(self):
@@ -57,13 +70,18 @@ func destroy_and_score() -> void:
 		Scoreboard.add_score()
 	rpc("_destroy")
 
+
 func destroy() -> void:
 	rpc("_destroy")
+
 
 sync func _destroy() -> void:
 	queue_free()
 
-sync func update_parent(node_path: String, new_position: Vector3, new_collision_layer: int, new_is_held: bool) -> void:
+
+sync func update_parent(
+	node_path: String, new_position: Vector3, new_collision_layer: int, new_is_held: bool
+) -> void:
 	get_parent().remove_child(self)
 	var new_parent = Network.game.get_node(node_path)
 	new_parent.add_child(self)
@@ -73,3 +91,4 @@ sync func update_parent(node_path: String, new_position: Vector3, new_collision_
 	area.collision_mask = new_collision_layer
 	# Tracking state
 	is_held = new_is_held
+	Music.play_pickup()

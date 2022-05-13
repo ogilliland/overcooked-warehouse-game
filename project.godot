@@ -21,6 +21,7 @@ Recipes="*res://scripts/recipes.gd"
 Scoreboard="*res://scripts/scoreboard.gd"
 BoxInit="*res://scripts/box_init.gd"
 Players="*res://scripts/players.gd"
+Music="*res://scenes/music.tscn"
 
 [display]
 
